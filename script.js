@@ -1,15 +1,3 @@
-const Produto = {
-  nome: "Smartphone XYZ",
-  preco: 999.99,
-  descricao: "Um smartphone poderoso com camera de alta resolução e processador rápido",
-  imagem: "./imagens/Xiaomi.jpg",
-  disponivel: true,
-  avaliacao: 4.5,
-  caracteristica: ["Tela de 6 polegadas", "Memoria de 128GB", "Camera principal de 48MP"],
-  tags: ["tecnologia", "Smartphone", "Eletronicos"],
-  desconto: "10%"
-}
-
 
 function product(nome,preco,descricao,imagem,disponivel,avaliacao,caracteristica,tags,desconto){
   this.nome = nome;
@@ -64,7 +52,7 @@ function createHtmlCard(product){
   h3.appendChild(document.createTextNode(this.disponivel ? "Disponivel" : "Indisponivel"));
   img.src = "./imagens/iphone.jpg";
  if(typeof this.tags !== 'number'){
-  console.error("é um numero");
+
  }
   p.appendChild(document.createTextNode(this.tags));
   p2.appendChild(document.createTextNode(this.caracteristica));
@@ -84,3 +72,49 @@ createHtmlCard.call(produto);
 createHtmlCard.call(produto2);
 createHtmlCard.call(produto3);
 
+// let arrayCards = []
+// arrayCards.push (produto,produto2,produto3)
+
+// console.log(arrayCards)
+
+// function generateCardList(arrayCards){
+//   arrayCards.forEach( card=> {
+//         createHtmlCard(card)
+//   });
+// }
+
+// generateCardList(arrayCards)
+// localStorage.setItem('Produtos', JSON.stringify(arrayCards));
+const container =document.querySelector('container')
+const body = document.querySelector('body');
+const toggle = document.getElementById('toggle');
+function setTheme() {
+const currentTheme = body.classList.contains('active') ? 'active' : 'inactive';
+localStorage.setItem('theme', currentTheme);
+}
+function setTheme() {
+  const currentTheme = container.classList.contains('active') ? 'active' : 'inactive';
+  localStorage.setItem('theme', currentTheme);
+  }
+
+function loadTheme() {
+const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'active') {
+      body.classList.add('active');
+      container.classList.add('active');
+      toggle.classList.add('active');
+          } else {
+        body.classList.remove('active');
+        container.classList.remove('active');
+        toggle.classList.remove('active');
+  }
+}
+
+  toggle.onclick = function() {
+  toggle.classList.toggle('active');
+  body.classList.toggle('active');
+  container.classList.toggle('active');
+  setTheme();
+  }
+
+    loadTheme();
